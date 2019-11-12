@@ -1,0 +1,64 @@
+@extends('admin.template.master') 
+@section('title', $title)
+@section('content')
+
+<div id="page-wrapper">
+	<div class="header"> 
+        <h1 class="page-header">
+            Show Applications <small>These are Applications.</small>
+        </h1>
+		<ol class="breadcrumb">
+			<li><a href="{{ route('auth.dashboard') }}">Home</a></li>
+			<li><a href="{{ route('auth.application.index') }}">Show Applications </a></li>
+			<li class="active">Data</li>
+		</ol> 									
+	</div>
+
+	<div id="page-inner"> 
+		<div class="row">
+	        <div class="col-md-12">
+	            <div class="panel panel-default">
+	                <div class="panel-heading">
+	                    Applications
+	                </div>
+	                
+	                <div class="panel-body">
+	                    <div class="table-responsive">
+	                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+	                        	<thead>
+									<tr class="headings">
+										<th class="column-title">S.no</th>							
+										<th class="column-title">Job Title</th>
+										<th class="column-title">Organisation</th>
+										<th class="column-title">Attachment</th>
+										<th class="column-title">Apply Time</th>
+										<th class="column-title">Last Date</th>					
+									</tr>
+								</thead>
+								<tbody>
+								@if(count($content) > 0)
+								
+								@foreach($content as $k=>$u)
+								<tr>
+									<td>{{ ++$k }}</td>
+									<td>{{ $u->job_title }}</td>
+									<td>{{ $u->organisation }}</td>
+									<td>{{ $u->attachment }}</td>
+									<td>{{ $u->created_at }}</td>
+									<td>{{ $u->closing_date }}</td>
+								</tr>
+								@endforeach
+								@else
+								<tr><td style="text-align: center;" colspan="5">No Record Found !!!</td></tr>
+								@endif
+								</tbody>
+							</table>
+						</div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>	
+</div>
+
+@endsection
